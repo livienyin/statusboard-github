@@ -1,0 +1,29 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/livienyin/Dropbox/Projects/WDI/statusboard-github/app/controllers/application_controller.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/livienyin/Dropbox/Projects/WDI/statusboard-github/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/livienyin/Dropbox/Projects/WDI/statusboard-github/app/helpers/graph_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/livienyin/Dropbox/Projects/WDI/statusboard-github/app/controllers/graph_controller.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1368768255
+  }
+}
