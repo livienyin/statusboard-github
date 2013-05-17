@@ -14,3 +14,5 @@
 /log/*.log
 /tmp
 /api_keys.yaml
+/.env
+/coverage

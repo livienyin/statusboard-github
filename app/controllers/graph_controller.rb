@@ -1,6 +1,7 @@
 class GraphController < ApplicationController
   
   def statusboard
+    # api calls and fetching data should be in model
     octo = Octokit::Client.new(:login => "me", :oauth_token => ENV['GITHUB_TOKEN'])
     repos = octo.repositories "livienyin"
     data = []
