@@ -1,24 +1,21 @@
 class GraphController < ApplicationController
+
+  def morris
+    gitgraph = GitGraph.new
+    @data = gitgraph.fetch_repo_commits
+    render :json => @data
+  end
   
   def statusboard
-    # api calls and fetching data should be in model
-    octo = Octokit::Client.new(:login => "me", :oauth_token => ENV['GITHUB_TOKEN'])
-    repos = octo.repositories "livienyin"
-    data = []
-    repos.each do
-      |repo| data << {
-        "title" => repo.name,
-        "value" => octo.commits({
-          :user => "livienyin", :name => repo.name
-        }).length
-      }
-    end
+    gitgraph = GitGraph.new
+    @data = gitgraph.fetch_repo_commits
+    
     statusboard = {
-      'title' => 'Git Hub: Commits By Repo',
-      'datasequences' => [
+      :title => 'Git Hub: Commits By Repo',
+      :datasequences => [
         {
-          'title' => 'Commits By Repo',
-          'datapoints' => data
+          :title => 'Commits By Repo',
+          :datapoints => @data
         }
       ]
     }
