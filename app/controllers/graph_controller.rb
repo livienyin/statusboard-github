@@ -6,7 +6,7 @@ class GraphController < ApplicationController
     data = []
     repos.each do
       |repo| data << {
-        "name" => repo.name,
+        "title" => repo.name,
         "value" => octo.commits({
           :user => "livienyin", :name => repo.name
         }).length
