@@ -1,7 +1,7 @@
 class GraphController < ApplicationController
   
   def statusboard
-    octo = Octokit::Client.new
+    octo = Octokit::Client.new(:login => "me", :oauth_token => ENV['GITHUB_TOKEN'])
     repos = octo.repositories "livienyin"
     data = []
     repos.each do
