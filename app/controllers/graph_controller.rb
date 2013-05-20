@@ -1,25 +1,20 @@
 class GraphController < ApplicationController
 
   def morris
-    gitgraph = GitGraph.new
-    @data = gitgraph.fetch_repo_commits
-    render :json => @data
+    render :json => GitGraph.new("livienyin").fetch_repo_commits
   end
   
-  def statusboard
-    gitgraph = GitGraph.new("livienyin")
-    @data = gitgraph.fetch_repo_commits
-    
+  def statusboard    
     statusboard = {
       :title => 'Git Hub: Commits By Repo',
       :datasequences => [
         {
           :title => 'Commits By Repo',
-          :datapoints => @data
+          :datapoints => GitGraph.new("livienyin").fetch_repo_commits
         }
       ]
     }
-    render :json => {graph: statusboard}
+    render :json => {:graph => statusboard}
   end
 
 end

@@ -3,14 +3,17 @@ require 'spec_helper'
 describe GraphController do
 
   before do
+    @graph_data = [{:title => "repo_name", :value => 2}]
     @fake_gitgraph = double(GitGraph)
-    @fake_gitgraph.stub(:fetch_repo_commits).and_return([{:title => "repo_name", :value => 2}])
+    @fake_gitgraph.stub(:fetch_repo_commits).and_return(@graph_data)
     GitGraph.stub(:new).and_return @fake_gitgraph
   end
 
   describe "#index" do
 
-    it "renders index.html" do
+    it "renders index.html successfully" do
+      get :index
+      expect(response).to be_success
     end
     
   end
@@ -21,10 +24,16 @@ describe GraphController do
       get :morris
       expect(response).to be_success
     end
-
-    it "assigns a data array" do
+    
+    it "instantiates gitgraph with the username livienyin" do
+      GitGraph.should_receive(:new).with("livienyin")
       get :morris
-      expect(@data).to be_an Array
+    end
+
+    it "renders json with correct arguments" do
+      GraphController.any_instance.stub(:render)
+      GraphController.any_instance.should_receive(:render).with(:json => @graph_data)
+      get :morris
     end
     
   end
@@ -40,14 +49,20 @@ describe GraphController do
       GitGraph.should_receive(:new).with("livienyin")
       get :statusboard
     end
-    
-    it "assigns a statusboard hash" do
-      get :statusboard
-      expect(:statusboard).to be_an Hash
-    end
 
-    it "returns datasequences as an array" do
-      pending
+    it "renders json with correct arguments" do
+      GraphController.any_instance.stub(:render)
+      statusboard = {
+        :title => 'Git Hub: Commits By Repo',
+        :datasequences => [
+        {
+          :title => 'Commits By Repo',
+          :datapoints => @graph_data
+        }
+       ]
+      }
+      GraphController.any_instance.should_receive(:render).with(:json => {:graph => statusboard})
+      get :statusboard
     end
     
   end
