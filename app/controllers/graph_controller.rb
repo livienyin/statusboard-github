@@ -7,7 +7,7 @@ class GraphController < ApplicationController
   end
   
   def statusboard
-    gitgraph = GitGraph.new
+    gitgraph = GitGraph.new("livienyin")
     @data = gitgraph.fetch_repo_commits
     
     statusboard = {
