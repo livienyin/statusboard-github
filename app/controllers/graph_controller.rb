@@ -4,7 +4,7 @@ class GraphController < ApplicationController
     render :json => GitGraph.new("livienyin").fetch_repo_commits
   end
 
-  def d3-graph
+  def d3data
     render :json => GitGraph.new("livienyin").fetch_repo_commits
   end
   
