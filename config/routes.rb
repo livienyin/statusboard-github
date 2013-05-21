@@ -2,7 +2,8 @@ StatusboardGithub::Application.routes.draw do
   root :to => 'graph#index'
   get '/statusboard.json' => 'graph#statusboard'
   get '/morris.json' => 'graph#morris'
-
+  get '/d3-graph.json' => 'graph#d3-data'
+  get '/d3-graph' => 'graph#d3-graph'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
