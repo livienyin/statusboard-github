@@ -5,10 +5,11 @@ class GraphController < ApplicationController
   end
 
   def d3data
-    render :json => GitGraph.new("livienyin").fetch_repo_commits
+#    render :json => [{:title => "test_a", :value => 15}, {:title => "test_b", :value => 12}, {:title# => "test", :value => 15}, {:title => "dsaf", :value => 4}]
+     render :json => GitGraph.new("livienyin").fetch_repo_commits
   end
   
-  def statusboard    
+  def statusboard
     statusboard = {
       :title => 'Git Hub: Commits By Repo',
       :datasequences => [
